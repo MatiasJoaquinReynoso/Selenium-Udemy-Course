@@ -15,4 +15,6 @@ Plus:
 - Language: Java
 - JDK: 17
 
+This course contains good practices that I will apply in my future projects, any suggestion will be accepted, thank you very much.
+
 Contact me: matiasjoaquinreynoso@gmail.com
