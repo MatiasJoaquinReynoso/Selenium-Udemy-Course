@@ -7,13 +7,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class BasePage {
     protected static WebDriver driver;
     private static WebDriverWait wait;
+    private static Actions action;
     // static for build the driver object this will be used once
     static {
         System.setProperty("webdriver.chrome.driver", "D:\\Archivos de Programa\\webdriver\\chrome\\chromedriver.exe");
@@ -30,17 +33,58 @@ public class BasePage {
     public static void navigateTo(String url){
         driver.get(url);
     }
-
+    // Get an element
     private WebElement Find(String locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
     }
-
+    // Click
     public void clickElement(String locator) {
         Find(locator).click();
     }
-
+    // Complete fields with text
     public void write(String locator, String textToWrite){
         Find(locator).clear();
         Find(locator).sendKeys(textToWrite);
+
+    }
+    // Dropdown by Value
+    public void selectFromDropdown(String locator, String valueToSelect) {
+        Select dropdown = new Select (Find(locator));
+
+        dropdown.selectByValue(valueToSelect);
+    }
+
+    // Dropdown by Index
+    public void selectFromDropdown(String locator, int valueToSelect) {
+        Select dropdown = new Select (Find(locator));
+
+        dropdown.selectByIndex(valueToSelect);
+    }
+    // Actions
+
+    // Hover-over element
+    public void hoverOverElement(String locator) {
+        action.moveToElement(Find(locator));
+    }
+    // Double Click
+    public void doubleClick(String locator) {
+        action.doubleClick(Find(locator));
+    }
+    // Right Click
+    public void rightClick(String locator) {
+        action.contextClick(Find(locator));
+    }
+
+    // iFrame and PopUps
+    public void switchToIframe(int iFrameIndex) {
+        driver.switchTo().frame(iFrameIndex);
+    }
+
+    public void switchToParentFrame() {
+        driver.switchTo().parentFrame();
+    }
+
+    public void dismissAlert() {
+        driver.switchTo().alert().dismiss();
     }
 }
