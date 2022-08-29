@@ -87,4 +87,24 @@ public class BasePage {
     public void dismissAlert() {
         driver.switchTo().alert().dismiss();
     }
+
+    public String textFromElement(String locator) {
+        return Find(locator).getText();
+    }
+
+    // Boolean elements
+    public boolean elementEnabled(String locator) {
+        return Find(locator).isEnabled();
+        // Check the button its enabled to be clickable
+    }
+
+    public boolean elementIsDisplayed(String locator) {
+        return Find(locator).isDisplayed();
+        // Check that the element is there
+    }
+
+    public boolean elementIsSelected(String locator) {
+        return Find(locator).isSelected();
+        // Verify that the checkbox is selected or not
+    }
 }

@@ -1,7 +1,10 @@
 package steps;
 
+import org.junit.Assert;
+
 import io.cucumber.java.en.*;
 import pages.GooglePage;
+// Assertions will be here too
 
 public class GoogleSteps {
 
@@ -14,7 +17,7 @@ public class GoogleSteps {
 
     @When("^I enter a search criteria$")
     public void enterSearchCriteria(){
-        google.enterSearchCriteria("Argentina");
+        google.enterSearchCriteria("Wikipedia");
     }
 
     @And("^click on the search button$")
@@ -24,6 +27,8 @@ public class GoogleSteps {
 
     @Then("^the results match the criteria$")
     public void validateResults(){
-
+        Assert.assertEquals("Wikipedia", google.firstResult());
     }
 }
+
+// The assert for boolean elements its 'Assert.assertTrue / False'
