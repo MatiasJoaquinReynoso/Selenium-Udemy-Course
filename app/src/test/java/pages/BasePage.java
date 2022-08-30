@@ -33,6 +33,11 @@ public class BasePage {
     public static void navigateTo(String url){
         driver.get(url);
     }
+
+    public static void closeBrowser() {
+        driver.quit();
+    }
+
     // Get an element
     private WebElement Find(String locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
